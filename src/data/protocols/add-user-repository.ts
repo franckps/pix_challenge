@@ -1,9 +1,5 @@
 import { UserModel } from '../../domain/user-model'
-
-export interface AddUserModel{
-    name: string
-    phone: string
-}
+import { AddUserModel } from '../../domain/usecases/add-user'
 
 export interface AddUserRepository{
     add (addUserModel: AddUserModel): Promise<UserModel>
