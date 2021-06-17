@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm'
+import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm'
+import { User } from './user-entity'
 
 @Entity()
 export class PixKey {
@@ -10,4 +11,7 @@ export class PixKey {
 
     @Column()
     userId: string;
+
+    @ManyToOne(() => User, user => user.pixKeys)
+    user: User;
 }

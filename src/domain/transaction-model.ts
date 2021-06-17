@@ -1,6 +1,11 @@
+import { UserModel } from './user-model'
+
 export interface TransactionModel{
     id: string
-    value: number
-    debitorId: string
-    creditorId: string
+    amount: number
+    debitorId?: string
+    creditorId?: string
+    createdAt: string
+    debitor?: UserModel
+    creditor?: UserModel
 }

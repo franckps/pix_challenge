@@ -1,11 +1,12 @@
 import { Connection, createConnection } from 'typeorm'
 import { User } from '../entity/user-entity'
 import { PixKey } from '../entity/pix-key-entity'
+import { Transaction } from '../entity/transaction-entity'
 
 export const TypeormPostgresHelper = {
   connection: null as Connection,
   url: null as string,
-  entities: [User, PixKey],
+  entities: [User, PixKey, Transaction],
 
   async connect (url): Promise<void> {
     this.url = url

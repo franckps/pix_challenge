@@ -1,11 +1,6 @@
 import { TransactionModel } from '../../domain/transaction-model'
-
-export interface AddTRansactionModel{
-    value: number
-    debitorId: string
-    creditorId: string
-}
+import { AddTransactionModel } from '../../domain/usecases/add-transaction'
 
 export interface AddTransactionRepository{
-    add (addTRansactionModel: AddTRansactionModel): Promise<TransactionModel>
+    add (addTRansactionModel: AddTransactionModel): Promise<TransactionModel>
 }

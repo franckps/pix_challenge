@@ -1,8 +1,8 @@
 import request from 'supertest'
-import app from '../config/app'
-import { TypeormPostgresHelper } from '../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
-import env from '../config/env'
-import { User } from '../../infra/db/typeorm-postgres/entity/user-entity'
+import app from '../../config/app'
+import { TypeormPostgresHelper } from '../../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
+import env from '../../config/env'
+import { User } from '../../../infra/db/typeorm-postgres/entity/user-entity'
 
 describe('SignUp Routes', () => {
   beforeAll(async () => {

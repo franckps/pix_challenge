@@ -1,10 +1,10 @@
 import request from 'supertest'
-import app from '../config/app'
-import { TypeormPostgresHelper } from '../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
-import env from '../config/env'
-import { PixKey } from '../../infra/db/typeorm-postgres/entity/pix-key-entity'
+import app from '../../config/app'
+import { TypeormPostgresHelper } from '../../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
+import env from '../../config/env'
+import { PixKey } from '../../../infra/db/typeorm-postgres/entity/pix-key-entity'
 
-describe('SignUp Routes', () => {
+describe('Add Pix Key Routes', () => {
   beforeAll(async () => {
     await TypeormPostgresHelper.connect(env.dbURL)
   })
@@ -33,7 +33,7 @@ describe('SignUp Routes', () => {
       })
 
     const httpResponse = await request(app)
-      .post(`/api/${userData.body.id}/pix`)
+      .post(`/api/${userData.body.id}/pix-key`)
       .send({
         key: '89 994353697'
       })
