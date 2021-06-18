@@ -1,7 +1,8 @@
 import request from 'supertest'
 import app from '../../config/app'
-import { TypeormPostgresHelper } from '../../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
 import env from '../../config/env'
+import { TypeormPostgresHelper } from '../../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
+import { User } from '../../../infra/db/typeorm-postgres/entity/user-entity'
 import { PixKey } from '../../../infra/db/typeorm-postgres/entity/pix-key-entity'
 
 describe('Add Pix Key Routes', () => {
@@ -15,6 +16,10 @@ describe('Add Pix Key Routes', () => {
     const addPixKeys = await repository.find()
     await repository.remove(addPixKeys)
     await TypeormPostgresHelper.disconnect()
+
+    const userRepository = connection.getRepository(User)
+    const allUsers = await userRepository.find()
+    await userRepository.remove(allUsers)
   })
 
   beforeEach(async () => {

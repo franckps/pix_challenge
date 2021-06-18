@@ -3,5 +3,5 @@ import { makeMakeTransactionController } from '../../factories/transaction/make-
 import { adaptRoute } from '../../adapters/express-route-adapter'
 
 export default (router: Router): void => {
-  router.post('/:id/pix', adaptRoute(makeMakeTransactionController()))
+  router.post('/:debitorId/pix', adaptRoute(makeMakeTransactionController()))
 }

@@ -1,8 +1,10 @@
 import request from 'supertest'
 import app from '../../config/app'
-import { TypeormPostgresHelper } from '../../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
 import env from '../../config/env'
+import { TypeormPostgresHelper } from '../../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
 import { PixKey } from '../../../infra/db/typeorm-postgres/entity/pix-key-entity'
+import { User } from '../../../infra/db/typeorm-postgres/entity/user-entity'
+import { Transaction } from '../../../infra/db/typeorm-postgres/entity/transaction-entity'
 
 describe('Transaction Routes', () => {
   beforeAll(async () => {
@@ -11,17 +13,25 @@ describe('Transaction Routes', () => {
 
   afterAll(async () => {
     const connection = await TypeormPostgresHelper.getConnection()
-    const repository = connection.getRepository(PixKey)
-    const addPixKeys = await repository.find()
-    await repository.remove(addPixKeys)
+    const repository = connection.getRepository(Transaction)
+    const transactionKeys = await repository.find()
+    await repository.remove(transactionKeys)
+
+    const pixKeyRepository = connection.getRepository(PixKey)
+    const allPixKeys = await pixKeyRepository.find()
+    await pixKeyRepository.remove(allPixKeys)
+
+    const userRepository = connection.getRepository(User)
+    const allUsers = await userRepository.find()
+    await userRepository.remove(allUsers)
     await TypeormPostgresHelper.disconnect()
   })
 
   beforeEach(async () => {
     const connection = await TypeormPostgresHelper.getConnection()
-    const repository = connection.getRepository(PixKey)
-    const addPixKeys = await repository.find()
-    await repository.remove(addPixKeys)
+    const repository = connection.getRepository(Transaction)
+    const transactionKeys = await repository.find()
+    await repository.remove(transactionKeys)
   })
 
   test('Should returns a transaction on success', async () => {
