@@ -4,13 +4,13 @@
 
 ### Básico
 
-[  ] O sistema deve ser capaz de estabelecar uma conexão com um banco de dados Postgres.
+[✅] O sistema deve ser capaz de estabelecar uma conexão com um banco de dados Postgres.
 
-[  ] O sistema deve ser capaz de lidar com requisições com formato de dados do tipo JSON.
+[✅] O sistema deve ser capaz de lidar com requisições com formato de dados do tipo JSON.
 
-[  ] O sistema deve ser capaz de cadastrar usuários.
+[✅] O sistema deve ser capaz de cadastrar usuários.
 
-[  ] O sistema deve ser capaz de persistir essas informações em um banco de dados relacional.
+[✅] O sistema deve ser capaz de persistir essas informações em um banco de dados relacional.
 
 
 ### Intermediário
@@ -41,7 +41,7 @@
 
 [  ] Disponibilizar no repositório o arquivo JSON referente às rotas da aplicação.
 
-[  ] Adicionar testes unitários.
+[✅] Adicionar testes unitários.
 
-[  ] Adicionar tratação de erros de maneira global.
+[✅] Adicionar tratação de erros de maneira global.
 
