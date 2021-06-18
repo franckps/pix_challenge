@@ -43,5 +43,5 @@
 
 [✅] Adicionar testes unitários.
 
-[✅] Adicionar tratação de erros de maneira global.
+[  ] Adicionar tratação de erros de maneira global.
 
