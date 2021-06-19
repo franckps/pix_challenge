@@ -1,8 +1,8 @@
 import { AddTransaction, AddTransactionModel } from '../../../domain/usecases/add-transaction'
 import { TransactionModel } from '../../../domain/transaction-model'
-import { MissingParamError } from '../../errors'
-import { badRequest, ok } from '../../helpers/http/http-helper'
+import { ok } from '../../helpers/http/http-helper'
 import { MakeTransactionController } from './make-transaction'
+import { Validation } from '../../protocols/validation'
 
 interface SutTypes{
     sut: MakeTransactionController
@@ -20,48 +20,18 @@ const makeSut = (): SutTypes => {
       })
     }
   }
+  class ValidationStub implements Validation {
+    async validate (input: any): Promise<Error> {
+      return Promise.resolve(null)
+    }
+  }
   const addTransactionStub = new AddTransactionStub()
-  const sut = new MakeTransactionController(addTransactionStub)
+  const validationStub = new ValidationStub()
+  const sut = new MakeTransactionController(addTransactionStub, validationStub)
   return { sut }
 }
 
 describe('Make Transaction Controller', () => {
-  test('Should return 400 Error if no debitorId is provide', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      body: {
-        amount: 150,
-        pixKey: 'any_key'
-      }
-    }
-    const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(badRequest(new MissingParamError('debitorId')))
-  })
-
-  test('Should return 400 Error if no amount is provide', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      body: {
-        debitorId: 'any_id',
-        pixKey: 'any_key'
-      }
-    }
-    const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(badRequest(new MissingParamError('amount')))
-  })
-
-  test('Should return 400 Error if no pikKey is provide', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      body: {
-        amount: 150,
-        debitorId: 'any_id'
-      }
-    }
-    const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(badRequest(new MissingParamError('pixKey')))
-  })
-
   test('Should return 200 if succeeds', async () => {
     const { sut } = makeSut()
     const httpRequest = {

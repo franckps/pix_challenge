@@ -1,7 +1,7 @@
 import { AddUser, AddUserModel } from '../../../domain/usecases/add-user'
 import { UserModel } from '../../../domain/user-model'
-import { MissingParamError } from '../../errors'
-import { badRequest, ok } from '../../helpers/http/http-helper'
+import { ok } from '../../helpers/http/http-helper'
+import { Validation } from '../../protocols/validation'
 import { SignUpController } from './signup'
 
 interface SutTypes{
@@ -18,34 +18,18 @@ const makeSut = (): SutTypes => {
       })
     }
   }
+  class ValidationStub implements Validation {
+    async validate (input: any): Promise<Error> {
+      return Promise.resolve(null)
+    }
+  }
   const addUserStub = new AddUserStub()
-  const sut = new SignUpController(addUserStub)
+  const validationStub = new ValidationStub()
+  const sut = new SignUpController(addUserStub, validationStub)
   return { sut }
 }
 
 describe('SignUpController', () => {
-  test('Should return 400 Error if no name is provide', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      body: {
-        phone: '0133466789'
-      }
-    }
-    const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(badRequest(new MissingParamError('name')))
-  })
-
-  test('Should return 400 Error if no phone is provide', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      body: {
-        name: 'any_name'
-      }
-    }
-    const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(badRequest(new MissingParamError('phone')))
-  })
-
   test('Should return 200 if succeeds', async () => {
     const { sut } = makeSut()
     const httpRequest = {

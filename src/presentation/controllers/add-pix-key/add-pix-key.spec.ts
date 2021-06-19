@@ -1,8 +1,8 @@
 import { AddPixKey, AddPixKeyModel } from '../../../domain/usecases/add-pix-key'
 import { PixKeyModel } from '../../../domain/pix-key-model'
-import { MissingParamError } from '../../errors'
-import { badRequest, ok } from '../../helpers/http/http-helper'
+import { ok } from '../../helpers/http/http-helper'
 import { AddPixKeyController } from './add-pix-key'
+import { Validation } from '../../protocols/validation'
 
 interface SutTypes{
     sut: AddPixKeyController
@@ -17,34 +17,18 @@ const makeSut = (): SutTypes => {
       })
     }
   }
+  class ValidationStub implements Validation {
+    async validate (input: any): Promise<Error> {
+      return Promise.resolve(null)
+    }
+  }
   const addPixKeyStub = new AddPixKeyStub()
-  const sut = new AddPixKeyController(addPixKeyStub)
+  const validationStub = new ValidationStub()
+  const sut = new AddPixKeyController(addPixKeyStub, validationStub)
   return { sut }
 }
 
 describe('Add Pix Key Controller', () => {
-  test('Should return 400 Error if no key is provide', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      body: {
-        id: 'any_id'
-      }
-    }
-    const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(badRequest(new MissingParamError('key')))
-  })
-
-  test('Should return 400 Error if no id is provide', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      body: {
-        key: 'any_key'
-      }
-    }
-    const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(badRequest(new MissingParamError('id')))
-  })
-
   test('Should return 200 if succeeds', async () => {
     const { sut } = makeSut()
     const httpRequest = {
