@@ -2,7 +2,7 @@ import { PixKeyModel } from '../pix-key-model'
 
 export interface AddPixKeyModel{
     key: string
-    userId: string
+    userId: 'uuid'
 }
 
 export interface AddPixKey {

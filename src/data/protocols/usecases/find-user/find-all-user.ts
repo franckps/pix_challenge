@@ -1,14 +1,14 @@
-import { FindUserById } from '../../../../domain/usecases/find-user-by-id'
+import { FindAllUser } from '../../../../domain/usecases/find-all-user'
 import { UserModel } from '../../../../domain/user-model'
 import { FindUserRepository } from '../../find-user-repository'
 
-export class DBFindUserById implements FindUserById {
+export class DBFindAllUser implements FindAllUser {
     private readonly findUserRepository: FindUserRepository
     constructor (findUserRepository: FindUserRepository) {
       this.findUserRepository = findUserRepository
     }
 
-    async find (id: 'uuid'): Promise<UserModel> {
-      return (await this.findUserRepository.find({ id }))[0]
+    async find (): Promise<UserModel[]> {
+      return await this.findUserRepository.find()
     }
 }

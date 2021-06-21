@@ -2,7 +2,7 @@ import { PixKeyModel } from './pix-key-model'
 import { TransactionModel } from './transaction-model'
 
 export interface UserModel{
-    id: string
+    id: 'uuid'
     name: string
     phone: string
     debitorTransactions?: TransactionModel[];

@@ -16,7 +16,7 @@ export class IsPixKeyOfOtherUserValidation implements Validation {
   async validate (input: any): Promise<Error> {
     try {
       const pixKey = await this.findPixKeyByKey.find(input[this.fieldName])
-      if (pixKey?.userId !== input[this.fieldName]) {
+      if (pixKey?.userId === input[this.otherFieldName]) {
         return new ForbiddenError()
       }
     } catch (error) {

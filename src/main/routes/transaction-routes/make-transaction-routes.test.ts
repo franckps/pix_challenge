@@ -49,13 +49,13 @@ describe('Transaction Routes', () => {
       })
 
     const firstUserPixData = await request(app)
-      .post(`/api/${firstUserData.body.id}/pix-key`)
+      .post(`/api/user/${firstUserData.body.id}/pix-key`)
       .send({
         key: '0123456789'
       })
 
     const httpResponse = await request(app)
-      .post(`/api/${secondUserData.body.id}/pix`)
+      .post(`/api/user/${secondUserData.body.id}/pix`)
       .send({
         pixKey: firstUserPixData.body.key,
         amount: 150

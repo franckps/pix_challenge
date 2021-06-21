@@ -2,7 +2,7 @@ import { TransactionModel } from '../transaction-model'
 
 export interface AddTransactionModel{
     amount: number
-    debitorId: string
+    debitorId: 'uuid'
     pixKey: string
 }
 

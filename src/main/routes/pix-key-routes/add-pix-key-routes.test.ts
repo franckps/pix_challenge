@@ -37,7 +37,7 @@ describe('Add Pix Key Routes', () => {
       })
 
     const httpResponse = await request(app)
-      .post(`/api/${userData.body.id}/pix-key`)
+      .post(`/api/user/${userData.body.id}/pix-key`)
       .send({
         key: '89 994353697'
       })

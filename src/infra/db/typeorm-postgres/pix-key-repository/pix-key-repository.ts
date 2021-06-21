@@ -7,13 +7,13 @@ import { FindPixKeyModel, FindPixKeyRepository } from '../../../../data/protocol
 import { PixKeyModel } from '../../../../domain/pix-key-model'
 
 export class PixKeyRepository implements AddPixKeyRepository, FindPixKeyRepository {
-  async add ({ key, userId }: AddPixKeyModel) {
+  async add ({ key: pixKey, userId: id }: AddPixKeyModel): Promise<PixKeyModel> {
     const connection = await TypeormPostgresHelper.getConnection()
     const userRepository = connection.getRepository(User)
-    const userToAddPix = await userRepository.findOne({ id: userId })
+    const userToAddPix = await userRepository.findOne({ id })
     const repository = connection.getRepository(PixKey)
     const newPixKey = new PixKey()
-    newPixKey.key = key
+    newPixKey.key = pixKey
     newPixKey.user = userToAddPix
     await repository.save(newPixKey)
     return await repository.findOne(newPixKey)

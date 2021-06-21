@@ -1,10 +1,10 @@
-import { Entity, Column, PrimaryColumn, OneToMany, Generated } from 'typeorm'
+import { Entity, Column, OneToMany, Generated, PrimaryGeneratedColumn } from 'typeorm'
 import { PixKey } from './pix-key-entity'
 import { Transaction } from './transaction-entity'
 
 @Entity()
 export class User {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn('uuid')
     @Generated('uuid')
     id: 'uuid';
 

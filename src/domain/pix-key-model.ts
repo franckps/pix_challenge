@@ -1,8 +1,8 @@
 import { UserModel } from './user-model'
 
 export interface PixKeyModel{
-    id: string
+    id: 'uuid'
     key: string
-    userId?: string
+    userId?: 'uuid'
     user?: UserModel
 }

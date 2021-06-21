@@ -8,10 +8,4 @@ RUN npm install --silent
 
 ADD . /src
 
-CMD ['npm', 'typeorm migration:revert']
-CMD ['npm', 'typeorm migration:revert']
-CMD ['npm', 'typeorm migration:revert']
-
-CMD ['npm', 'typeorm migration:run']
-
-CMD ['npm', 'dev']
+CMD npm run dev

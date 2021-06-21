@@ -5,16 +5,16 @@ import { User } from './user-entity'
 export class Transaction {
     @PrimaryColumn()
     @Generated('uuid')
-    id: string;
+    id: 'uuid';
 
     @Column()
     amount: number;
 
-    @Column()
-    creditorId: string;
+    @Column({ type: 'uuid' })
+    creditorId: 'uuid';
 
-    @Column()
-    debitorId: string;
+    @Column({ type: 'uuid' })
+    debitorId: 'uuid';
 
     @ManyToOne(() => User, user => user.creditorTransactions)
     creditor: User;

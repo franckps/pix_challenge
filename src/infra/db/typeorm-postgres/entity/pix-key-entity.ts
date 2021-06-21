@@ -1,18 +1,19 @@
-import { Entity, Column, PrimaryColumn, ManyToOne, Generated } from 'typeorm'
+import { Entity, Column, PrimaryColumn, ManyToOne, Generated, JoinColumn } from 'typeorm'
 import { User } from './user-entity'
 
 @Entity()
 export class PixKey {
     @PrimaryColumn()
     @Generated('uuid')
-    id: string;
+    id: 'uuid';
 
     @Column()
     key: string;
 
     @Column({ type: 'uuid' })
-    userId: string;
+    userId: 'uuid';
 
-    @ManyToOne(() => User, user => user.pixKeys)
+    @ManyToOne(type => User, { nullable: true })
+    @JoinColumn({ name: 'userId' })
     user: User;
 }

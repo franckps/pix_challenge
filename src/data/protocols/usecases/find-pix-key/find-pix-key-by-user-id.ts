@@ -8,7 +8,7 @@ export class DBFindPixKeyByUserId implements FindPixKeyByUserId {
       this.findPixKeyRepository = findPixKeyRepository
     }
 
-    async find (userId: string): Promise<PixKeyModel[]> {
+    async find (userId: 'uuid'): Promise<PixKeyModel[]> {
       return await this.findPixKeyRepository.find({ userId })
     }
 }
