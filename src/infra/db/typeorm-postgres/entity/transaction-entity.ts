@@ -1,9 +1,10 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn, ManyToOne } from 'typeorm'
+import { Entity, Column, PrimaryColumn, CreateDateColumn, ManyToOne, Generated } from 'typeorm'
 import { User } from './user-entity'
 
 @Entity()
 export class Transaction {
     @PrimaryColumn()
+    @Generated('uuid')
     id: string;
 
     @Column()

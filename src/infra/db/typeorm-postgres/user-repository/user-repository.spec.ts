@@ -1,11 +1,10 @@
-import env from '../../../../main/config/env'
 import { User } from '../entity/user-entity'
 import { TypeormPostgresHelper } from '../helpers/typeorm-postgres-helper'
 import { UserRepository } from './user-repository'
 
 describe('Typeorm Postgres User Repository', () => {
   beforeAll(async () => {
-    await TypeormPostgresHelper.connect(env.dbURL)
+    await TypeormPostgresHelper.connect()
   })
 
   afterAll(async () => {

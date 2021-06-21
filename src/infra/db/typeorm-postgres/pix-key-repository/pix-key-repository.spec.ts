@@ -1,4 +1,3 @@
-import env from '../../../../main/config/env'
 import { User } from '../entity/user-entity'
 import { PixKey } from '../entity/pix-key-entity'
 import { TypeormPostgresHelper } from '../helpers/typeorm-postgres-helper'
@@ -7,7 +6,7 @@ import { UserRepository } from '../user-repository/user-repository'
 
 describe('Typeorm Postgres Pix Key Repository', () => {
   beforeAll(async () => {
-    await TypeormPostgresHelper.connect(env.dbURL)
+    await TypeormPostgresHelper.connect()
   })
 
   afterAll(async () => {

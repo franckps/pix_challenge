@@ -8,13 +8,15 @@ export const TypeormPostgresHelper = {
   url: null as string,
   entities: [User, PixKey, Transaction],
 
-  async connect (url): Promise<void> {
+  async connect (url?: string): Promise<void> {
     this.url = url
-    this.connection = await createConnection({
-      type: 'postgres',
-      url: this.url,
-      entities: this.entities
-    })
+    this.connection = url
+      ? await createConnection({
+        type: 'postgres',
+        url: this.url,
+        entities: this.entities
+      })
+      : await createConnection()
   },
 
   async disconnect (): Promise<void> {
@@ -23,7 +25,7 @@ export const TypeormPostgresHelper = {
   },
 
   async getConnection (): Promise<Connection> {
-    if (!this.connection) { await this.connect(this.config) }
+    if (!this.connection) { await this.connect(this.url) }
     return this.connection
   }
 }

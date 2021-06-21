@@ -23,6 +23,7 @@ export class AddPixKeyController implements Controller {
         const newPixKeyData = await this.addPixKey.add({ key, userId: id })
         return ok(newPixKeyData)
       } catch (error) {
+        console.log(error)
         return serverError(error)
       }
     }

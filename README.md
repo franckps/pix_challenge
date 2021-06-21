@@ -17,9 +17,9 @@
 
 [✅] O sistema deve ser capaz de cadastrar chaves de PIX para os usuários já cadastrados.
 
-[  ] Uma chave não poderá ser cadastrada mais de uma vez.
+[✅] Uma chave não poderá ser cadastrada mais de uma vez.
 
-[  ] Cada usuário poderá ter no máximo 3 chaves.
+[✅] Cada usuário poderá ter no máximo 3 chaves.
 
 [✅] O sistema deve ser capaz de persistir essas informações em um banco de dados relacional.
 
@@ -43,5 +43,9 @@
 
 [✅] Adicionar testes unitários.
 
-[  ] Adicionar tratação de erros de maneira global.
+[✅] Adicionar tratação de erros de maneira global.
 
+
+yarn typeorm migration:run
+
+yarn start

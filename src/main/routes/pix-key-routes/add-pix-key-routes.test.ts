@@ -1,13 +1,12 @@
 import request from 'supertest'
 import app from '../../config/app'
-import env from '../../config/env'
 import { TypeormPostgresHelper } from '../../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
 import { User } from '../../../infra/db/typeorm-postgres/entity/user-entity'
 import { PixKey } from '../../../infra/db/typeorm-postgres/entity/pix-key-entity'
 
 describe('Add Pix Key Routes', () => {
   beforeAll(async () => {
-    await TypeormPostgresHelper.connect(env.dbURL)
+    await TypeormPostgresHelper.connect()
   })
 
   afterAll(async () => {

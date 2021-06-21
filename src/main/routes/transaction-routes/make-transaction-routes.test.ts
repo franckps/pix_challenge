@@ -1,6 +1,5 @@
 import request from 'supertest'
 import app from '../../config/app'
-import env from '../../config/env'
 import { TypeormPostgresHelper } from '../../../infra/db/typeorm-postgres/helpers/typeorm-postgres-helper'
 import { PixKey } from '../../../infra/db/typeorm-postgres/entity/pix-key-entity'
 import { User } from '../../../infra/db/typeorm-postgres/entity/user-entity'
@@ -8,7 +7,7 @@ import { Transaction } from '../../../infra/db/typeorm-postgres/entity/transacti
 
 describe('Transaction Routes', () => {
   beforeAll(async () => {
-    await TypeormPostgresHelper.connect(env.dbURL)
+    await TypeormPostgresHelper.connect()
   })
 
   afterAll(async () => {

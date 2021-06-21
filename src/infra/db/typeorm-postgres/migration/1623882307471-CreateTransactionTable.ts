@@ -20,11 +20,11 @@ export class CreateTransactionTable1623882307471 implements MigrationInterface {
         },
         {
           name: 'debitorId',
-          type: 'varchar'
+          type: 'uuid'
         },
         {
           name: 'creditorId',
-          type: 'varchar'
+          type: 'uuid'
         },
         {
           name: 'createdAt',

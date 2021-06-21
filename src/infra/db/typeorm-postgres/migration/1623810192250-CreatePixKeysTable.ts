@@ -21,7 +21,7 @@ export class CreatePixKeysTable1623810192250 implements MigrationInterface {
         },
         {
           name: 'userId',
-          type: 'varchar'
+          type: 'uuid'
         }
       ]
     }))
