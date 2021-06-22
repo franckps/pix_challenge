@@ -12,7 +12,7 @@ E quando surgir no terminal uma menságem parecida com o texto abaixo, o servido
 API is running on 127.0.0.1:3000
 ```
 
-## JSON para importar no Insomnia ( [Baixar arquivo JSON](https://github.com/franckps/pix_challenge/asset/json para importar no insomnia workspace.json) )
+## JSON para importar no Insomnia ( [Baixar arquivo JSON](https://github.com/franckps/pix_challenge/blob/main/asset/json%20para%20importar%20no%20insomnia%20workspace.json) )
 
 
 ### Caso importe o arquivo Json no insomnia, deve-se alterar as variáveis de ambiente no insomnia para valores válidos
