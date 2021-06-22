@@ -8,4 +8,4 @@ RUN npm install --silent
 
 ADD . /src
 
-CMD npm run dev
+CMD ["npm","start"]

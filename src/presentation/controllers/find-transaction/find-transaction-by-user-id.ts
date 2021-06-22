@@ -1,14 +1,14 @@
-import { FindPixKeyByUserId } from '../../../domain/usecases/find-pix-key-by-user-id'
+import { FindTransactionByUserId } from '../../../domain/usecases/find-transaction-by-user-id'
 import { badRequest, ok, serverError } from '../../helpers/http/http-helper'
 import { Controller } from '../../protocols/controller'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
 import { Validation } from '../../protocols/validation'
 
-export class FindPixKeyByUserIdController implements Controller {
-    private readonly findPixKeyByUserId: FindPixKeyByUserId
+export class FindTransactionByUserIdController implements Controller {
+    private readonly findTransactionByUserId: FindTransactionByUserId
     private readonly validation: Validation
-    constructor (findPixKeyByUserId: FindPixKeyByUserId, validation: Validation) {
-      this.findPixKeyByUserId = findPixKeyByUserId
+    constructor (findTransactionByUserId: FindTransactionByUserId, validation: Validation) {
+      this.findTransactionByUserId = findTransactionByUserId
       this.validation = validation
     }
 
@@ -20,8 +20,8 @@ export class FindPixKeyByUserIdController implements Controller {
         }
 
         const { id: userId } = httpRequest.body
-        const pixData = await this.findPixKeyByUserId.find(userId)
-        return ok(pixData)
+        const transactionData = await this.findTransactionByUserId.find(userId)
+        return ok(transactionData)
       } catch (error) {
         console.log(error)
         return serverError(error)

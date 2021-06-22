@@ -7,12 +7,17 @@ import { UserRepository } from '../../../infra/db/typeorm-postgres/user-reposito
 import { DBFindPixKeyByUserId } from '../../../data/protocols/usecases/find-pix-key/find-pix-key-by-user-id'
 import { PixKeyRepository } from '../../../infra/db/typeorm-postgres/pix-key-repository/pix-key-repository'
 import { MaxPixKeyPerUserValidation } from '../../../presentation/helpers/validators/max-pix-key-per-user-validation'
+import { DBFindPixKeyByKey } from '../../../data/protocols/usecases/find-pix-key/find-pix-key-by-key'
+import { NotExistsPixKeyValidation } from '../../../presentation/helpers/validators/not-exists-pix-key-validation'
 
 export const makeAddPixKeyValidation = (): ValidationComposite => {
   const validations: Validation[] = []
   for (const field of ['key', 'id']) {
     validations.push(new RequiredFieldValidation(field))
   }
+
+  const dbFindPixKeyByKey = new DBFindPixKeyByKey(new PixKeyRepository())
+  validations.push(new NotExistsPixKeyValidation('key', dbFindPixKeyByKey))
 
   const dbFindUserById = new DBFindUserById(new UserRepository())
   validations.push(new UserIdValidation('id', dbFindUserById))

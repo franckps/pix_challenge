@@ -4,8 +4,10 @@ import { Transaction } from '../entity/transaction-entity'
 import { TypeormPostgresHelper } from '../helpers/typeorm-postgres-helper'
 import { User } from '../entity/user-entity'
 import { PixKey } from '../entity/pix-key-entity'
+import { FindTransactionModel, FindTransactionRepository } from '../../../../data/protocols/find-transaction-repository'
+import { TransactionModel } from '../../../../domain/transaction-model'
 
-export class TransactionRepository implements AddTransactionRepository {
+export class TransactionRepository implements AddTransactionRepository, FindTransactionRepository {
   async add ({ amount, debitorId, pixKey }: AddTransactionModel) {
     const connection = await TypeormPostgresHelper.getConnection()
     const userRepository = connection.getRepository(User)
@@ -26,5 +28,11 @@ export class TransactionRepository implements AddTransactionRepository {
       .returning('*')
       .execute()).raw[0]
     return creationTransactionData
+  }
+
+  async find (findTransactionModel?: FindTransactionModel): Promise<TransactionModel[]> {
+    const connection = await TypeormPostgresHelper.getConnection()
+    const repository = connection.getRepository(Transaction)
+    return await repository.find(findTransactionModel)
   }
 }

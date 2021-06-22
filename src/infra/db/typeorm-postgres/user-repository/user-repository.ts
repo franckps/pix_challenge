@@ -15,7 +15,7 @@ export class UserRepository implements AddUserRepository, FindUserRepository {
     return await repository.findOne(newUser)
   }
 
-  async find (findUserModel: FindUserModel) {
+  async find (findUserModel?: FindUserModel) {
     const connection = await TypeormPostgresHelper.getConnection()
     const repository = connection.getRepository(User)
     return await repository.find(findUserModel)

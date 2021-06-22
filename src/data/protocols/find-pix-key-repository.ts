@@ -7,5 +7,5 @@ export interface FindPixKeyModel{
 }
 
 export interface FindPixKeyRepository{
-    find (findPixKeyModel: FindPixKeyModel): Promise<PixKeyModel[]>
+    find (findPixKeyModel?: FindPixKeyModel): Promise<PixKeyModel[]>
 }

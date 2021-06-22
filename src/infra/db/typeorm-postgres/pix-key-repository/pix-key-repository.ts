@@ -19,7 +19,7 @@ export class PixKeyRepository implements AddPixKeyRepository, FindPixKeyReposito
     return await repository.findOne(newPixKey)
   }
 
-  async find (findPixKeyModel: FindPixKeyModel): Promise<PixKeyModel[]> {
+  async find (findPixKeyModel?: FindPixKeyModel): Promise<PixKeyModel[]> {
     const connection = await TypeormPostgresHelper.getConnection()
     const repository = connection.getRepository(PixKey)
     return await repository.find(findPixKeyModel)
