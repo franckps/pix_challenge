@@ -70,7 +70,7 @@ Caso um dos parâmetros("name","phone") não seja passado na requisição a resp
 
 
 
-### Criar chave fix
+### Criar chave pix
 
 Request
 ```
