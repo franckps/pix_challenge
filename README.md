@@ -45,8 +45,8 @@ Request
 POST: api/signup
 
 {
-	"name": "Francisco Pereira",
-	"phone": "89 994353697"
+  "name": "Francisco Pereira",
+  "phone": "89 994353697"
 }
 ```
 Response
@@ -77,7 +77,7 @@ Request
 POST: api/user/:id/pix-key
 
 {
-	"key": "89 994353697"
+  "key": "89 994353697"
 }
 ```
 Response
@@ -124,8 +124,8 @@ Request
 POST: api/user/:id/pix
 
 {
-	"pixKey": "89 994353697",
-	"amount": "150"
+  "pixKey": "89 994353697",
+  "amount": "150"
 }
 ```
 Response
