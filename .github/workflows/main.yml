@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    name: Checking code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v2
+      
+      - name: Use Nodejs 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+          
+      - name: Install all dependencies
+        uses: Borales/actions-yarn@v2.3.0
+        
+      - name: Run type checking 
+        run: yarn tsc
+        
+      - name: Run tests
+        run: yarn test
