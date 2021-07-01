@@ -1,9 +1,9 @@
-{
+module.exports = {
   "type": "postgres",
-  "host": "db",
-  "port": 5432,
-  "username": "postgres",
-  "password": "pix-challenge",
+  "host": process.env.DB_HOST | "db",
+  "port": process.env.DB_PORT | 5432,
+  "username": process.env.DB_USER | "postgres",
+  "password": process.env.DB_PASSWORD | "pix-challenge",
   "database": "postgres",
   "synchronize": true,
   "logging": false,
