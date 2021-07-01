@@ -49,3 +49,4 @@ jobs:
       DB_HOST: localhost
       DB_PORT: 5432
       DB_PASSWORD: pix-challenge
+      DB_USER: postgres
