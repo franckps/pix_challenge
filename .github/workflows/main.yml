@@ -11,6 +11,19 @@ jobs:
   build:
     name: Checking code
     runs-on: ubuntu-latest
+
+    container-job:
+    # Containers must run in Linux based operating systems
+    runs-on: ubuntu-latest
+    # Docker Hub image that `container-job` executes in
+    container: node:10.18-jessie
+
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: pix-challenge
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
