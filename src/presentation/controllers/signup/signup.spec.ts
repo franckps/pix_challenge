@@ -12,7 +12,7 @@ const makeSut = (): SutTypes => {
   class AddUserStub implements AddUser {
     async add (addUserModel: AddUserModel): Promise<UserModel> {
       return Promise.resolve({
-        id: 'any_id',
+        id: 'any_id' as 'uuid',
         name: 'any_name',
         phone: '0123456789'
       })

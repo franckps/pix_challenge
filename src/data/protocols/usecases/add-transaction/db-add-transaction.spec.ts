@@ -15,7 +15,7 @@ describe('DbAddTransaction', () => {
     const spyAdd = jest.spyOn(addTransactionRepositoryStub, 'add')
     const addTransactionData = {
       amount: 150,
-      debitorId: 'any_id',
+      debitorId: 'any_id' as 'uuid',
       pixKey: 'any_pix_key'
     }
     sut.add(addTransactionData)

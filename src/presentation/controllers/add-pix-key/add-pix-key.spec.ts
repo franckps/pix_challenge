@@ -12,7 +12,7 @@ const makeSut = (): SutTypes => {
   class AddPixKeyStub implements AddPixKey {
     async add (addPixKeyModel: AddPixKeyModel): Promise<PixKeyModel> {
       return Promise.resolve({
-        id: 'any_id',
+        id: 'any_id' as 'uuid',
         key: 'any_key'
       })
     }

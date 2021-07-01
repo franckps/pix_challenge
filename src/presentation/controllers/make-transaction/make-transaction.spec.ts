@@ -12,10 +12,10 @@ const makeSut = (): SutTypes => {
   class AddTransactionStub implements AddTransaction {
     async add (addTransactionModel: AddTransactionModel): Promise<TransactionModel> {
       return Promise.resolve({
-        id: 'any_id',
+        id: 'any_id' as 'uuid',
         amount: 150,
-        creditorId: 'any_id',
-        debitorId: 'other_id',
+        creditorId: 'any_id' as 'uuid',
+        debitorId: 'other_id' as 'uuid',
         createdAt: 'any_timestamp'
       })
     }
