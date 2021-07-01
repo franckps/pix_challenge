@@ -39,9 +39,6 @@ jobs:
         
       - name: Run type checking 
         run: yarn tsc
-      
-      - name: Run migrations
-        run: yarn typeorm migration:run
         
       - name: Run tests
         run: yarn test
