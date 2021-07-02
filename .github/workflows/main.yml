@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      db:
+      postgres:
         image: postgres
         env:
           POSTGRES_PASSWORD: pix-challenge
@@ -40,10 +40,14 @@ jobs:
       - name: Run type checking 
         run: yarn tsc
         
+        
+      - name: Run migrations
+        run: yarn typeorm migration:run
+
       - name: Run tests
         run: yarn test
     env:
-      DB_HOST: db
+      DB_HOST: localhost
       DB_PORT: 5432
-      DB_PASSWORD: pix-challenge
+      DB_PASS: pix-challenge
       DB_USER: postgres

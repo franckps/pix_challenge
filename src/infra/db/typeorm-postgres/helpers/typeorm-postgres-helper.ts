@@ -11,7 +11,6 @@ export const TypeormPostgresHelper = {
   async connect (url?: string): Promise<void> {
     this.url = url
     console.log('URL: ', this.url)
-    try {
     this.connection = this.url
       ? await createConnection({
         type: 'postgres',
@@ -19,9 +18,6 @@ export const TypeormPostgresHelper = {
         entities: this.entities
       })
       : await createConnection()
-    }catch(err){
-      console.log('err: ', err)
-    }
   },
 
   async disconnect (): Promise<void> {
