@@ -43,7 +43,7 @@ jobs:
       - name: Run tests
         run: yarn test
     env:
-      DB_HOST: localhost
+      DB_HOST: db
       DB_PORT: 5432
       DB_PASSWORD: pix-challenge
       DB_USER: postgres
